@@ -2,6 +2,7 @@ package com.yantraQA.stepdefs;
 
 import com.yantraQA.pageobjects.LoginPageObjects;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
@@ -9,6 +10,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -36,6 +39,14 @@ public class StepDef {
     public void cleanUp(){
         driver.quit();
         log.info("Driver quit success");
+    }
+
+    @AfterStep
+    public void takeScreenShot(Scenario scenario){
+        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+        byte[] imageByte = takesScreenshot.getScreenshotAs(OutputType.BYTES);
+        scenario.attach(imageByte,"image/png","Screenshot-"+ scenario.getLine());
+
     }
 
     @Given("I am on the Login Page")
