@@ -1,12 +1,5 @@
 package com.yantraQA.pageobjects;
 
-/***
- * Author: Akash Tyagi
- * Company: VisionIT
- * Date: 17-Sep-2020
- * Description: Test Automation FW development
- */
-
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
