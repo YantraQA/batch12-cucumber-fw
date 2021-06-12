@@ -1,28 +1,36 @@
-@ui @search
-Feature: User is able to use search feature
+@search
+Feature: Search Feature
 
-  Scenario: User is able to search for various products and add each type of products with different prices
+  Scenario: User is able to Open the browser, navigate to the URL and Search for Product
     Given User navigated to the home application url
-    When User add the products with defined price range and quantity listed below
-      | ITEM     | PRICE_LESS_THAN | QUANTITY |
-      | laptop   | 40000           | 1        |
-      | earphone | 1000            | 2        |
-      | mouse    | 2000            | 1        |
-    Then User cart is updated with the products and quantity
+    When User Search for product "Laptop"
+    Then Search Result page is displayed
 
-    Scenario: User is able to filter the result based on Prices
-      Given User navigated to the home application url
-      And User Search for product "laptop"
-      When User enters minimum price as "30000" and maximum price as "40000" mentioned in below table
-      Then Verify that Search results gets filtered with price range between 30000 and 40000
 
-#    Scenario: User is able to filter the result based on Prices
-#      Given User navigated to the home application url
-#      And User Search for product "Computer"
-#      When User enters minimum price and maximum price as mentioned in below table
-#        |MIN_PRICE|MAX_PRICE|
-#        |30000    |40000    |
-#      Then Search results gets filtered with price range as mentioned in below table
-#        |MIN_PRICE|MAX_PRICE|
-#        |30000    |40000    |
+  Scenario Outline: User is able to search multiple products
+    Given User navigated to the home application url
+    When User Search for product "<product_name>"
+    Then Search Result page is displayed
+    Examples:
+      |product_name|
+      | laptop     |
+      | earphone   |
+      | computer   |
+
+  @search  @smoke
+  Scenario: User is able to Search for a Product
+    Given User Opened the Browser and User navigated to the App url
+    When User search for a new product
+    Then Search result for the product is displayed
+
+  @search
+  Scenario: User is able to filter the search based on price
+    Given User search for a Product as "Laptop"
+    When User enters minimum as "20000" and maximum as "50000" in the filter criteria
+    Then User is able to see results with price between "20000" and "50000"
+
+
+
+
+
 

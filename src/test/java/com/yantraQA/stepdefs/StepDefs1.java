@@ -1,24 +1,25 @@
 package com.yantraQA.stepdefs;
 
-import com.aventstack.extentreports.model.Test;
 import com.yantraQA.core.TestContext;
-import com.yantraQA.core.WebDriverFactory;
-import com.yantraQA.pageobjects.*;
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.*;
 
+import java.util.List;
+import java.util.Map;
 
 @Log4j2
 public class StepDefs1{
 
     TestContext testContext;
     public Scenario scn;
+
+    @Before
+    public void temp(Scenario s){
+        this.scn = s;
+    }
 
     //Dependency Injections using Pico Container
     public StepDefs1(TestContext testContext){
@@ -28,7 +29,7 @@ public class StepDefs1{
 
     @Given("User navigated to the home application url")
     public void user_navigated_to_the_home_application_url() {
-        WebDriverFactory.navigateToTheUrl(testContext.base_url);
+        testContext.driver.get(testContext.base_url);
         scn.log("Browser navigated to URL: " + testContext.base_url);
 
         String expected = "Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in";
@@ -42,9 +43,30 @@ public class StepDefs1{
         scn.log("Product Searched: " + productName);
     }
 
-    @Then("Search Result page is displayed")
-    public void search_result_page_is_displayed() {
-        testContext.searchPageObjects.ValidateProductSearchIsSuccessfull();
+    @Given("want to send multiple items in list form")
+    public void want_to_send_multiple_items_in_list_form(List<String> list) {
+        // Write code here that turns the phrase above into concrete actions
+        // For automatic transformation, change DataTable to one of
+        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+        // Double, Byte, Short, Long, BigInteger or BigDecimal.
+        //
+        // For other transformations you can register a DataTableType.
+
+        System.out.println(list.toString());
+    }
+
+    @Given("want to send multiple items in map form")
+    public void want_to_send_multiple_items_in_map_form(Map<String,String> hMap) {
+        // Write code here that turns the phrase above into concrete actions
+        // For automatic transformation, change DataTable to one of
+        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+        // Double, Byte, Short, Long, BigInteger or BigDecimal.
+        //
+        // For other transformations you can register a DataTableType.
+
+        System.out.println(hMap.toString());
     }
 
 

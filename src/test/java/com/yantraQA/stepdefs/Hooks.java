@@ -37,7 +37,7 @@ public class Hooks {
 
     @After(order=1)
     public void cleanUp(Scenario scn){
-        WebDriverFactory.quitDriver();
+        testContext.quitDriver();
         scn.log("Browser Closed");
     }
 

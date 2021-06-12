@@ -35,6 +35,8 @@
 ### Phase 3
 * Add more test cases
 * Learn Data Tables
+* Parallel Execution
+
 
 
 ### Phase 4

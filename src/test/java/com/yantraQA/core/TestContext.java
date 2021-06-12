@@ -26,6 +26,12 @@ public class TestContext {
         log.info("Browser invoked.");
     }
 
+    public void quitDriver(){
+        driver.quit();
+        log.info("Browser quit.");
+    }
+
+
     public void intializePageObjects(){
         cmnPageObjects = new CmnPageObjects(driver);
         homePageObjects = new HomePageObjects(driver);
